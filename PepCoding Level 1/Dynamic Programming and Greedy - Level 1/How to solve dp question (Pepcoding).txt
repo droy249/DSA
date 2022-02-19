@@ -1,0 +1,13 @@
+3 Stages to Solving a dp problem in TABULATION mode:
+
+1) Storage and Meaning:
+	First assign a 1D or 2D array of suitable size to store all the results.
+	Then deduce the meaning 
+	
+2) Identify direction:
+	Find out in which direction you traverse, i.e. determine the "bottom" and the "up".
+	
+3) Traverse and solve:
+	
+
+https://novelfull.com/ancient-godly-monarch/chapter-1-cultivation-with-broken-meridians.html
