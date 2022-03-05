@@ -1,6 +1,11 @@
 // Question Link: https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/dynamic-programming/matrix-chain-multiplication-official/ojquestion
 // Video Link: https://youtu.be/pEYwLmGJcvs?list=PL-Jc9J83PIiEZvXCn-c5UIBvfT8dA-8EG
 import java.util.*;
+<<<<<<< HEAD
+=======
+import java.lang.*;
+import java.io.*;
+>>>>>>> origin/main
 
 class MatrixChainMultiplication {
 	public static void main(String[] args) throws java.lang.Exception{
@@ -12,12 +17,19 @@ class MatrixChainMultiplication {
 		System.out.println("Enter dimensions of matrices: ");
 		int[] dimensions = new int[n];
 		
+<<<<<<< HEAD
 		for (int i = 0; i < dimensions.length; i++) {
 			dimensions[i] = scn.nextInt();
 		}
 		
 		int minNumberOfMultiplications = tabulate(dimensions);
 		scn.close();
+=======
+		for(int dimension : dimensions)
+			dimension = scn.nextInt();
+		
+		int minNumberOfMultiplications = tabulate(dimensions);
+>>>>>>> origin/main
 	}
 	
 	private static int tabulate(int[] dimensions){

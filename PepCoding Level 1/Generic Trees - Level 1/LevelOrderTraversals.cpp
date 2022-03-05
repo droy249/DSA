@@ -141,20 +141,35 @@ void levelOrderLevelwise3(Node* root) {
 // Video Link: https://youtu.be/NuASXwfaFaY?list=PL-Jc9J83PIiEmjuIVDrwR9h5i9TT2CEU_&t=956
 void levelOrderLevelwise4(Node* root) {
     queue<pair<Node*, int>> queue;
+<<<<<<< HEAD
     int levelNumber = 1;
     queue.push({root, levelNumber});
+=======
+    int level = 1;
+    queue.push({root, level});
+>>>>>>> origin/main
 
     while (!queue.empty()) {
         auto pair = queue.front();
         queue.pop();
+<<<<<<< HEAD
         if (pair.second > levelNumber) {
             levelNumber = pair.second;
+=======
+        if (pair.second > level) {
+            level = pair.second;
+>>>>>>> origin/main
             cout << '\n';
         }
 
         cout << pair.first->data << " ";
         for (auto&& child : pair.first->children)
             queue.push({child, pair.second + 1});
+<<<<<<< HEAD
+=======
+
+        // delete pair.first;
+>>>>>>> origin/main
     }
 
     cout << "\n\n";
@@ -167,12 +182,17 @@ void levelOrderLevelwiseZigZag(Node* root) {
     stack<Node*> mainS, childS;
     mainS.push(root);
 
+<<<<<<< HEAD
     int level;
+=======
+    bool leftToRight;
+>>>>>>> origin/main
     while (!mainS.empty()) {
         root = mainS.top();
         mainS.pop();
         cout << root->data << " ";
 
+<<<<<<< HEAD
         if (level & 1) 
             for (auto&& child : root->children)
                 childS.push(child);
@@ -180,6 +200,17 @@ void levelOrderLevelwiseZigZag(Node* root) {
             for (int i = root->children.size() - 1; ~i; --i)
                 childS.push(root->children.at(i));
         
+=======
+        if (leftToRight) {
+            for (auto&& child : root->children)
+                childS.push(child);
+            leftToRight = false;
+        } else {
+            for (int i = root->children.size() - 1; ~i; --i)
+                childS.push(root->children.at(i));
+            leftToRight = true;
+        }
+>>>>>>> origin/main
 
         if (mainS.empty()) {
             swap(mainS, childS);

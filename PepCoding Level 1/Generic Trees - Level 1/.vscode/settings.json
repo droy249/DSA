@@ -7,7 +7,11 @@
         "vector": "cpp",
         "optional": "cpp",
         "iostream": "cpp",
+<<<<<<< HEAD
         "limits": "cpp",
         "valarray": "cpp"
+=======
+        "limits": "cpp"
+>>>>>>> origin/main
     }
 }

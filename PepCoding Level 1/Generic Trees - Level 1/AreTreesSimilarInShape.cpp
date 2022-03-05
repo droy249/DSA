@@ -31,6 +31,7 @@ Node* constructor(const vector<int> nums) {
     return root;
 }
 
+<<<<<<< HEAD
 void destructor(Node*& root) {
     if (!root) return;
     for (auto&& child: root->children)
@@ -67,6 +68,15 @@ void display(Node* root) {
         return;
     }
 
+=======
+void destructor(Node* root) {
+    for (auto&& child : root->children)
+        destructor(child);
+    delete root;
+}
+
+void display(Node* root) {
+>>>>>>> origin/main
     string str(to_string(root->data) + " -> ");
 
     for (auto&& child : root->children)
@@ -79,7 +89,10 @@ void display(Node* root) {
         display(child);
 }
 
+<<<<<<< HEAD
 // https://nados.io/article/are-trees-similar-in-shape#:~:text=5.-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 bool areTreesSimilarInShape(Node* root1, Node* root2) {
     if (root1->children.size() != root2->children.size()) return false;
 

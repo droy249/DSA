@@ -66,7 +66,10 @@ vector<int> nodeToRootPath(Node* root, int data) {
     return {};
 }
 
+<<<<<<< HEAD
 // https://nados.io/article/lowest-common-ancestor-generic-tree#:~:text=Play%20Video-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 int lowestCommonAncestor(Node* root, int data1, int data2) {
     vector<int> path1{nodeToRootPath(root, data1)}, path2{nodeToRootPath(root, data2)};
 

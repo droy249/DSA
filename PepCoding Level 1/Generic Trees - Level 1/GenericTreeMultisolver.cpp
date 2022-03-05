@@ -32,6 +32,7 @@ Node* constructor(const vector<int> nums) {
     return root;
 }
 
+<<<<<<< HEAD
 void destructor(Node*& root) {
     if (!root) return;
     for (auto&& child: root->children)
@@ -68,6 +69,15 @@ void display(Node* root) {
         return;
     }
 
+=======
+void destructor(Node* root) {
+    for (auto&& child : root->children)
+        destructor(child);
+    delete root;
+}
+
+void display(Node* root) {
+>>>>>>> origin/main
     string str(to_string(root->data) + " -> ");
 
     for (auto&& child : root->children)
@@ -80,14 +90,28 @@ void display(Node* root) {
         display(child);
 }
 
+<<<<<<< HEAD
 void multisolver(Node* root, int& treeSize, int& treeHeight, int& maxData, int& minData, int treeDepth = 0) {
     ++treeSize;
+=======
+int treeSize;
+int treeHeight;
+int maxData{numeric_limits<int>::min()};
+int minData{numeric_limits<int>::max()};
+void multisolver(Node* root, int treeDepth = 0) {
+    ++treeSize; 
+>>>>>>> origin/main
     minData = min(minData, root->data);
     maxData = max(maxData, root->data);
     treeHeight = max(treeHeight, treeDepth);
 
+<<<<<<< HEAD
     for (auto&& child : root->children)
         multisolver(child, treeSize, treeHeight, maxData, minData, treeDepth + 1);
+=======
+    for (auto&& child: root->children)
+        multisolver(child, treeDepth + 1);
+>>>>>>> origin/main
 }
 
 int main() {
@@ -97,6 +121,7 @@ int main() {
     cout << "\nGiven generic tree ('.' denotes null): \n";
     display(root);
 
+<<<<<<< HEAD
     int treeSize{};
     int treeHeight{};
     int maxData{numeric_limits<int>::min()};
@@ -104,11 +129,17 @@ int main() {
 
     multisolver(root, treeSize, treeHeight, maxData, minData);
 
+=======
+    multisolver(root);
+>>>>>>> origin/main
     cout << "\nNumber of nodes (size) of tree: " << treeSize;
     cout << "\nHeight of tree:" << treeHeight;
     cout << "\nMin node in tree: " << minData;
     cout << "\nMax node in tree: " << maxData;
+<<<<<<< HEAD
     cout << "\n\n";
+=======
+>>>>>>> origin/main
 
     destructor(root);
     cout << "\n\n";

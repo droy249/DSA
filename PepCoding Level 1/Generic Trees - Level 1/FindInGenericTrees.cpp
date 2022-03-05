@@ -1,6 +1,3 @@
-// Question Link: https://nados.io/question/node-to-root-path-in-generic-tree
-// Video Link: https://youtu.be/oEBwL5pHzTs?list=PL-Jc9J83PIiEmjuIVDrwR9h5i9TT2CEU_
-// Similar Question Gfg Link: https://www.geeksforgeeks.org/print-all-root-to-leaf-paths-of-an-n-ary-tree/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -57,45 +54,36 @@ void display(Node* root) {
         display(child);
 }
 
-<<<<<<< HEAD
-// https://nados.io/article/node-to-root-path-in-generic-tree#:~:text=4.-,Analysis,-%3A
-=======
->>>>>>> origin/main
-vector<int> nodeToRootPath(Node* root, int data) {
+bool findInGenericTree(Node* root, int data) {
+    bool found = root->data == data;
+    for (auto&& child : root->children)
+        found = found && findInGenericTree(child, data);
+
+    return found;
+}
+
+bool findInGenericTreeOptimized(Node* root, int data) {
     if (root->data == data)
-        return {data};
+        return true;
 
-    for (auto&& child : root->children) {
-        vector<int> path{nodeToRootPath(child, data)};
-        if (!path.empty()) {
-            path.emplace_back(root->data);
-            return path;
-        }
-    }
+    for (auto&& child : root->children)
+        if (findInGenericTreeOptimized(child, data))
+            return true;
 
-    return {};
+    return false;
 }
 
 int main() {
     const vector<int> nums{10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 120, -1, -1, 90, -1, -1, 40, 100, -1, -1, -1};
     Node* root = constructor(nums);
 
-    cout << "\nGiven generic tree ('.' denotes null): \n";
+    cout << "\nGiven generic tree ('.' denotes null): ";
     display(root);
 
-    cout << "Enter node data: ";
+    cout << "Enter element to find: ";
     int data;
     cin >> data;
 
-    cout << "\nGiven node to root paths: ";
-    for (auto&& node : nodeToRootPath(root, data))
-<<<<<<< HEAD
-        cout << node << " <-";
-    cout << "root";
-=======
-        cout << node << ' ';
->>>>>>> origin/main
-
-    destructor(root);
-    cout << "\n\n";
+    cout << (findInGenericTree(root, data) ? "Node exists" : "Node doesn't exist") << endl;
+    cout << (findInGenericTreeOptimized(root, data) ? "Node exists" : "Node doesn't exist") << endl;
 }

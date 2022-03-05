@@ -31,6 +31,7 @@ Node* constructor(const vector<int> nums) {
     return root;
 }
 
+<<<<<<< HEAD
 void destructor(Node*& root) {
     if (!root) return;
     for (auto&& child: root->children)
@@ -64,6 +65,15 @@ void display(Node* root) {
         return;
     }
 
+=======
+void destructor(Node* root) {
+    for (auto&& child : root->children)
+        destructor(child);
+    delete root;
+}
+
+void display(Node* root) {
+>>>>>>> origin/main
     string str(to_string(root->data) + " -> ");
 
     for (auto&& child : root->children)
@@ -76,7 +86,10 @@ void display(Node* root) {
         display(child);
 }
 
+<<<<<<< HEAD
 // https://nados.io/article/are-trees-mirror-in-shape#:~:text=7.-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 bool areTreesMirrorInShape(Node* root1, Node* root2) {
     if (root1->children.size() != root2->children.size()) return false;
 
@@ -90,14 +103,24 @@ bool areTreesMirrorInShape(Node* root1, Node* root2) {
 
 int main() {
     const vector<int> tree1{
+<<<<<<< HEAD
         10, 20, -1, 30, 50, -1, 60, -1, -1, 40, -1, -1
         // 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 120, -1, -1, 90, -1, -1, 40, 100, -1, -1, -1
+=======
+        // 10, 20, -1, 30, 50, -1, 60, -1, -1, 40, -1, -1
+        10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 120, -1, -1, 90, -1, -1, 40, 100, -1, -1, -1
+>>>>>>> origin/main
     };
     Node* root1 = constructor(tree1);
 
     const vector<int> tree2{
+<<<<<<< HEAD
         100, 200, -1, 300, 500, -1, 600, -1, -1, 400, -1, -1
         // 1, 2, 5, -1, 6, -1, -1, 3, 7, -1, 8, 11, -1, 12, -1, -1, 9, -1, -1, 4, 10, -1, -1, -1
+=======
+        // 100, 200, -1, 300, 500, -1, 600, -1, -1, 400, -1, -1
+        1, 2, 5, -1, 6, -1, -1, 3, 7, -1, 8, 11, -1, 12, -1, -1, 9, -1, -1, 4, 10, -1, -1, -1
+>>>>>>> origin/main
     };
     Node* root2 = constructor(tree2);
 

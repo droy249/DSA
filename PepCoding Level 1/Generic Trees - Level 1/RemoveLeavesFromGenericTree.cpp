@@ -58,7 +58,10 @@ void display(Node* root) {
         display(child);
 }
 
+<<<<<<< HEAD
 // https://nados.io/article/remove-leaves-in-generic-tree#:~:text=root)%3B%0A%20%20%20%20display(root)%3B%0A%20%20%7D%0A%20%0A%7D-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 void removeLeaves(Node* root) {
     // // Pepcoding approach to removal
     // for (int i = root->children.size() - 1; i >= 0; i--)

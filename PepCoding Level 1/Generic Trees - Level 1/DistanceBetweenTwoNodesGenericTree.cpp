@@ -65,7 +65,10 @@ vector<int> nodeToRootPath(Node* root, int data) {
     return {};
 }
 
+<<<<<<< HEAD
 // https://nados.io/article/distance-between-two-nodes-in-a-generic-tree#:~:text=4.-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 int distanceBetweenNodes(Node* root, int data1, int data2) {
     vector<int> path1{nodeToRootPath(root, data1)}, path2{nodeToRootPath(root, data2)};
 
@@ -85,8 +88,12 @@ int main() {
     display(root);
 
     cout << "\nEnter nodes for which to find distance between: ";
+<<<<<<< HEAD
     int data1, data2;
     cin >> data1 >> data2;
+=======
+    int data1, data2; cin >> data1 >> data2;
+>>>>>>> origin/main
 
     cout << "\nDistance (i.e number of edges) between given nodes is: " << distanceBetweenNodes(root, data1, data2);
 

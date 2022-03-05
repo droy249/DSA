@@ -58,7 +58,10 @@ void display(Node* root) {
         display(child);
 }
 
+<<<<<<< HEAD
 // https://nados.io/article/mirror-of-a-generic-tree#:~:text=4.-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 void mirrorGenericTree(Node* root) {
     reverse(root->children.begin(), root->children.end());
     for (auto&& child : root->children)

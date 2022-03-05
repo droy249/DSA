@@ -67,7 +67,10 @@ Node* getTail(Node* node) {
 
 // Approach 1: Brute Force
 // Time Complexity: O(n^2)
+<<<<<<< HEAD
 // https://nados.io/article/linearize-a-generic-tree#:~:text=3.-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 void linearizeGenericTree(Node* root) {
     //		// Pepcoding approach
     // while (root->children.size() > 1) {
@@ -96,21 +99,34 @@ void linearizeGenericTree(Node* root) {
 
 // Approach 2: optimized
 // Time Complexity: O(n)
+<<<<<<< HEAD
 // https://nados.io/article/linearize-a-generic-tree-efficient-approach#:~:text=6.-,Analysis,-%3A
+=======
+>>>>>>> origin/main
 Node* linearizeGenericTreeOptimized(Node* root) {
     if (root->children.empty())
         return root;
 
+<<<<<<< HEAD
     Node* tailOfLastChild = linearizeGenericTreeOptimized(root->children.back());
+=======
+    Node* tailOfLastChlid = linearizeGenericTreeOptimized(root->children.back());
+>>>>>>> origin/main
     while (root->children.size() > 1) {
         Node* lastChild = root->children.back();
 		root->children.pop_back();
 
         Node* secondLastChild = root->children.back();
         Node* tailOfSecondLastChlid = linearizeGenericTreeOptimized(secondLastChild);
+<<<<<<< HEAD
         tailOfSecondLastChlid->children.push_back(lastChild);
     }
     return tailOfLastChild;
+=======
+        tailOfSecondLastChlid->children.push_back(secondLastChild);
+    }
+    return tailOfLastChlid;
+>>>>>>> origin/main
 }
 
 int main() {
@@ -121,9 +137,15 @@ int main() {
     display(root);
 
     // linearizeGenericTree(root);
+<<<<<<< HEAD
     linearizeGenericTreeOptimized(root);
 
     cout << "\nGeneric tree after linearizing: \n";
+=======
+    linearizeGenericTree(root);
+
+    cout << "\nGeneric tree after mirroring: \n";
+>>>>>>> origin/main
     display(root);
 
     destructor(root);
