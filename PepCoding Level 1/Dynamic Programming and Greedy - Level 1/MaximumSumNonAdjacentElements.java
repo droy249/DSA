@@ -1,3 +1,7 @@
+// Question Link: https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/maximum-sum-non-adjacent-elements-official/ojquestion
+// Video Link: https://youtu.be/VT4bZV24QNo?list=PL-Jc9J83PIiG8fE6rj9F5a6uyQ5WPdqKy
+// Gfg Link: https://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
+// Leetcode Link: https://leetcode.com/problems/delete-and-earn/
 import java.util.Scanner;
 
 public class MaximumSumNonAdjacentElements {
