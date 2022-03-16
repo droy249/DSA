@@ -48,9 +48,10 @@ void display(ListNode* head) {
     cout << "null\n\n";
 }
 
+// Approach 1: Using extra space (Pepcoding approach)
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-    ListNode* head{new ListNode()};
-    ListNode* res{head};
+    ListNode dummy{};
+    ListNode* head{&dummy};
 
     while (list1 and list2) {
         if (list1->val < list2->val) {
@@ -72,7 +73,45 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         list2 = list2->next;
     }
 
-    return res->next;
+    return dummy.next;
+}
+
+// Approach 2: Without extra space
+ListNode* mergeTwoLists2(ListNode* l1, ListNode* l2) {
+    ListNode dummy{};
+    ListNode* tail{&dummy};
+
+    while (l1 and l2)
+        if (l1->val < l2->val) {
+            tail = tail->next = l1;
+            l1 = l1->next;
+        } else {
+            tail = tail->next = l2;
+            l2 = l2->next;
+        }
+
+    tail->next = l1 ? l1 : l2;
+    return dummy.next;
+}
+
+// Approach 3: Approach 2 using recursion
+ListNode* mergeTwoLists3(ListNode* l1, ListNode* l2) {
+    ListNode* result{nullptr};
+
+    if (!l1)
+        return l2;
+    else if (!l2)
+        return l1;
+
+    if (l1->val > l2->val) {
+        result = l2;
+        result->next = mergeTwoLists(l1, l2->next);
+    } else {
+        result = l1;
+        result->next = mergeTwoLists(l1->next, l2);
+    }
+
+    return result;
 }
 
 int main() {
@@ -85,7 +124,7 @@ int main() {
     display(head2);
 
     cout << "List obtained after merging both lists is : ";
-    ListNode* head{mergeTwoLists(head1, head2)};
+    ListNode* head{mergeTwoLists3(head1, head2)};
     display(head);
 
     destruct(head1);

@@ -36,6 +36,12 @@ struct LinkedList {
 
     void reverseDataIterative();
     void reversePointerIterative();
+    void displayReverseRecursive();
+    void reverseDataRecursive();
+    void reversePointerRecursive();
+
+    void reversePointerHelper(ListNode*);
+    void reverseDataHelper(ListNode*, ListNode*&, int);
 };
 
 int main() {
@@ -52,6 +58,9 @@ int main() {
     cout << "9. Get value of node at index\n";
     cout << "10. Reverse linked list (data iterative)\n";
     cout << "11. Reverse linked list (pointer interative)\n";
+    cout << "12. Display reverse of linked list (recursive)\n";
+    cout << "13. Reverse linked list (pointer recursive)\n";
+    cout << "14. Reverse linked list (data recursive)\n";
     cout << "15. Quit\n";
 
     LinkedList linkedList;
@@ -63,7 +72,6 @@ int main() {
 
         switch (choice) {
             case 0:
-                
 
             case 1:
                 cout << "Enter value to add: ";
@@ -142,6 +150,31 @@ int main() {
                 cout << "Reversed linked list: ";
                 linkedList.display();
                 break;
+
+            case 12:
+                cout << "Recursive display of reverse of linked list: ";
+                linkedList.displayReverseRecursive();
+                break;
+
+            case 13:
+                cout << "Current linked list: ";
+                linkedList.display();
+                linkedList.reversePointerRecursive();
+                cout << "Reversed linked list: ";
+                linkedList.display();
+                break;
+
+            case 14:
+                cout << "Current linked list: ";
+                linkedList.display();
+                linkedList.reverseDataRecursive();
+                cout << "Reversed linked list: ";
+                linkedList.display();
+                break;
+
+            case 15:
+                cout << "Exiting...\n\n";
+                return 0;
 
             default:
                 cout << "Incorrect choice...\n";
@@ -263,9 +296,9 @@ int LinkedList::deleteAtIndex(int index) {
         return deleteAtTail();
     else {
         ListNode* temp{head};
-        for(int i{}; i < index - 1; ++i)
+        for (int i{}; i < index - 1; ++i)
             temp = temp->next;
-        
+
         int val{temp->next->val};
         ListNode* tmp{temp->next};
         temp->next = temp->next->next;
@@ -330,6 +363,50 @@ void LinkedList::reversePointerIterative() {
     }
 
     swap(head, tail);
+}
+
+void displayRecursiveHelper(ListNode* node) {
+    if (!node) return;
+    displayRecursiveHelper(node->next);
+    cout << node->val << " ";
+}
+
+// Question Link: https://nados.io/question/display-reverse-recursive-linked-list
+// Video Link: https://youtu.be/kgmHuB6w0PM?list=PL-Jc9J83PIiF5VZmktfqW6WVU1pxBF6l_
+void LinkedList::displayReverseRecursive() {
+    displayRecursiveHelper(head);
+    cout << "\n";
+}
+
+void LinkedList::reversePointerHelper(ListNode* node) {
+    if (!node) return;
+    
+    reversePointerHelper(node->next);
+    
+    if (node != tail)
+        node = node->next->next;
+}
+
+// Question Link: https://nados.io/question/reverse-linked-list-pointer-recursive
+// Video Link: https://youtu.be/q9PE0PjVHIo?list=PL-Jc9J83PIiF5VZmktfqW6WVU1pxBF6l_
+void LinkedList::reversePointerRecursive() {
+    reversePointerHelper(head);
+    head->next = nullptr;
+    swap(head, tail);
+}
+
+void LinkedList::reverseDataHelper(ListNode* right, ListNode*& left, int level) {
+    if(!right) return;
+    reverseDataHelper(right->next, left, level + 1);
+    if (level >= size / 2)
+        swap(right->val, left->val);
+    left = left->next;
+}
+
+// Question Link: 
+// Video Link: https://youtu.be/aL3l2-S9koY?list=PL-Jc9J83PIiF5VZmktfqW6WVU1pxBF6l_
+void LinkedList::reverseDataRecursive() {
+    reverseDataHelper(head, head, 0);
 }
 
 LinkedList::~LinkedList() {
