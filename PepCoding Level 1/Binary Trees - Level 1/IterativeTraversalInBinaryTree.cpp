@@ -87,7 +87,7 @@ void destruct(TreeNode*& root) {
 
 // Video Link: https://youtu.be/Bfqd8BsPVuw?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk
 // Gfg Link: https://www.geeksforgeeks.org/iterative-preorder-traversal/
-void preorder(TreeNode*& root) {
+void preorder(TreeNode* root) {
     stack<TreeNode*> st;
     st.emplace(root);
 
@@ -123,14 +123,46 @@ void inorder(TreeNode*& root) {
 // Video Link: https://youtu.be/2YBhNLodD8Q?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk
 // Gfg Link: https://www.geeksforgeeks.org/iterative-postorder-traversal/
 void postorder2Stacks(TreeNode* root) {
-    stack<TreeNode*> st;
-    
+    if (not root) return;
+
+    stack<TreeNode*> st1;
+    vector<int> st2;
+    st1.emplace(root);
+
+    while (not st1.empty()) {
+        root = st1.top();
+        st1.pop();
+
+        if (root) st2.emplace_back(root->val);
+        if (root->left) st1.emplace(root->left);
+        if (root->right) st1.emplace(root->right);
+    }
+
+    for (int i{st2.size() - 1}; ~i; --i)
+        cout << st2.at(i) << " ";
 }
 
-// Video Link: 
+// Video Link: https://youtu.be/NzIGLLwZBS8?list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk
 // Gfg Link: https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
 void postorder1Stack(TreeNode* root) {
+    stack <TreeNode*> st;
+    TreeNode* curr{root};
 
+    while (curr and not st.empty())
+    {
+        if (curr)
+        {
+            st.emplace(curr);
+            curr = curr->left;
+
+        }
+        else
+        {
+            
+        }
+        
+    }
+    
 }
 
 void allTraversals(TreeNode*& root, vector<int>& preorder, vector<int>& inorder, vector<int>& postorder) {

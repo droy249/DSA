@@ -84,14 +84,36 @@ void destruct(TreeNode*& root) {
     root = nullptr;
 }
 
-vector<vector<int>> nodeToRootPathWithinRange(TreeNode*& root, const int& low, const int& high, vector<int> path = {}, int sum = 0) {
-    if(root->left == root->right) return {{}};
+void nodeToRootPathWithinRange(vector<vector<int>>& paths, TreeNode* root, const int& low, const int& high, vector<int> path = {}, int sum = 0) {
+    // Base case for null root or when node has only one child
+    if (not root) return;
 
+    // First we are adding the root->val to both path and sum because we have not fone so for child node.
+    path.emplace_back(root->val);
+    sum += root->val;
+
+    // When we reach leaf nodethem we simply check 
+    if (root->left == root->right) {
+        if (low <= sum and sum <= high)
+            paths.emplace_back(path);
+        return;
+    }
+
+    nodeToRootPathWithinRange(paths, root->left, low, high, path, sum);
+    nodeToRootPathWithinRange(paths, root->right, low, high, path, sum);
+
+    // // Backtrack not needed as control never reaches here
+    // sum -= root->val;
+    // path.pop_back();
 }
 
 int main() {
-    TreeNode* root{construct1({50, 25, 12, -1, -1, 37, 30, -1, -1, -1, 75, 62, -1, 70, -1, -1, 87, -1, -1})};
+    TreeNode* root{construct1({
+        // 50, 25, 12, -1, -1, 37, 30, -1, -1, -1, 75, 62, -1, 70, -1, -1, 87, -1, -1
+        50, 25, 12, -1, -1, 37, 30, -1, -1, 40, -1, -1, 75, 62, 60, -1, -1, 70, -1, -1, 87, -1, -1
+    })};
     // int idx{};
+    // 50 25 12 n n 37 30 n n 40 n n 75 62 60 n n 70 n n 87 n n
     // TreeNode* root{construct2({50, 25, 12, -1, -1, 37, 30, -1, -1, -1, 75, 62, -1, 70, -1, -1, 87, -1, -1}, idx)};
 
     cout << "Given binary tree:\n";
@@ -107,7 +129,9 @@ int main() {
     cin >> high;
 
     cout << "All paths from root to leaf with sum of all nodes within path lying within range: \n";
-    for (auto&& path : nodeToRootPathWithinRange(root, low, high)) {
+    vector<vector<int>> allPaths;
+    nodeToRootPathWithinRange(allPaths, root, low, high);
+    for (auto&& path : allPaths) {
         for (auto&& node : path)
             cout << node << " ";
         cout << "\n";
