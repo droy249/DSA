@@ -1,5 +1,5 @@
-// Question Link: https://nados.io/question/path-to-leaf-from-root-in-range
-// Video Link: https://youtu.be/A6Z5YvsrDtg?list=PLNQqARTgXkMbp1R47hg9NnCNVAraXJv99
+// Question Link: https://nados.io/question/transform-to-left-cloned-tree
+// Video Link: https://youtu.be/TO7trQloRXc?list=PLNQqARTgXkMbp1R47hg9NnCNVAraXJv99
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -84,27 +84,14 @@ void destruct(TreeNode*& root) {
     root = nullptr;
 }
 
-void nodeToRootPathWithinRange(vector<vector<int>>& paths, TreeNode*&    root, const int& low, const int& high, vector<int> path = {}, int sum = 0) {
-    // Base case for null root or when node has only one child
+void transform(TreeNode*& root) {
     if (not root) return;
 
-    // First we are adding the root->val to both path and sum because we have not fone so for child node.
-    path.emplace_back(root->val);
-    sum += root->val;
+    TreeNode* node{new TreeNode{root->val, root->left, nullptr}};
+    root->left = node;
 
-    // When we reach leaf nodethem we simply check 
-    if (root->left == root->right) {
-        if (low <= sum and sum <= high)
-            paths.emplace_back(path);
-        return;
-    }
-
-    nodeToRootPathWithinRange(paths, root->left, low, high, path, sum);
-    nodeToRootPathWithinRange(paths, root->right, low, high, path, sum);
-
-    // // Backtrack not needed as control never reaches here
-    // sum -= root->val;
-    // path.pop_back();
+    transform(root->left->left);
+    transform(root->right);
 }
 
 int main() {
@@ -120,23 +107,9 @@ int main() {
     display(root);
     cout << "\n";
 
-    cout << "Enter lower range: ";
-    int low;
-    cin >> low;
-
-    cout << "Enter higher range: ";
-    int high;
-    cin >> high;
-
-    cout << "All paths from root to leaf with sum of all nodes within path lying within range: \n";
-    vector<vector<int>> allPaths;
-    nodeToRootPathWithinRange(allPaths, root, low, high);
-    for (auto&& path : allPaths) {
-        for (auto&& node : path)
-            cout << node << " ";
-        cout << "\n";
-    }
-    cout << "\n";
+    cout << "Binary Tree after transformation: \n";
+    transform(root);
+    display(root);
 
     destruct(root);
 }
