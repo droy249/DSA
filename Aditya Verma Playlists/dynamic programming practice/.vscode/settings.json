@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "cstring": "c",
+        "random": "cpp"
+    }
+}

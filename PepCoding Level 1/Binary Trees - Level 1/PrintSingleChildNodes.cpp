@@ -84,25 +84,44 @@ void destruct(TreeNode*& root) {
     root = nullptr;
 }
 
-vector<TreeNode*> singleChildren(TreeNode*& root) {
+// Approach 1
+void printSingleChildren1(TreeNode* node, TreeNode* parent = nullptr) {
+    if (not node) return;
 
+    if (parent and (parent->left == node and not parent->right) or (parent->right == node and not parent->left))
+        cout << node->val << " ";
+    
+    printSingleChildren1(node->left, node);
+    printSingleChildren1(node->right, node);
+}
+
+// Approach 2 (Without parent)
+void printSingleChildren2(TreeNode*& node) {
+    if (not node) return;
+
+    if (node->left and not node->right) cout << node->left->val << " ";
+    else if (node->right and not node->left) cout << node->right->val << " ";
+
+    printSingleChildren2(node->left);
+    printSingleChildren2(node->right);
 }
 
 int main() {
     TreeNode* root{construct1({
-        50, 50, 25, 25, 12, 12, -1, -1, -1, -1, 37, 37, 30, 30, -1, -1, -1, -1, -1, -1, 75, 75, 62, 62, -1, -1, 70, 70, -1, -1, -1, -1, 87, 87, -1, -1, -1
+        // 50, 25, 12, -1, -1, 37, 30, -1, -1, -1, 75, 62, -1, 70, -1, -1, 87, -1, -1
+        // 50, 25, 12, -1, -1, 37, 30, -1, -1, -1, 75, 62, 60, -1, -1, -1, -1
+        10, 20, 40, -1, -1, 50, -1, 80, -1, -1, 30, 60, 90, -1, -1, -1, 70, -1, -1
     })};
     // int idx{};
     // 50 25 12 n n 37 30 n n 40 n n 75 62 60 n n 70 n n 87 n n
     // TreeNode* root{construct2({50, 25, 12, -1, -1, 37, 30, -1, -1, -1, 75, 62, -1, 70, -1, -1, 87, -1, -1}, idx)};
 
-    cout << "Given left cloned binary tree:\n";
+    cout << "Given binary tree:\n";
     display(root);
     cout << "\n";
 
     cout << "Single Child Nodes are: \n";
-    for (auto&& child : singleChildren(root))
-    cout << child->val << " ";
+    printSingleChildren2(root);
     cout << "\n\n";
 
     destruct(root);

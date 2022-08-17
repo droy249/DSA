@@ -13,7 +13,7 @@ Video Link: https://www.youtube.com/watch?v=Jv-eGC2xmtU&list=PL-Jc9J83PIiFc7hJ5e
 void swap(int *arr, int i, int j){
 	int tmp = arr[i];
 	arr[i] = arr[j];
-	arr[j] = arr[i];
+	arr[j] = tmp;
 }
 
 void bubbleSort(int *arr, const int *n){

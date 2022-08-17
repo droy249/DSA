@@ -1,2 +1,0 @@
-
-    destruct(root->right);

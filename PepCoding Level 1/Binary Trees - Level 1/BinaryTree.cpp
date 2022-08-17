@@ -96,9 +96,9 @@ int maxNode(TreeNode* root) {
     return not root ? numeric_limits<int>::min() : max(node->data, max(maxNode(root->left), maxNode(root->right)));
 }
 
-int height(TreeNode* root) {
+int sum(TreeNode* root) {
     // Base case is -1 if counting edges, 0 if counting levels of nodes
-    return not root ? 0 : 1 + max(height(root->left), height(root->right));
+    return not root ? 0 : 1 + max(sum(root->left), sum(root->right));
 }
 
 int main() {
@@ -114,7 +114,7 @@ int main() {
     cout << "Number of nodes: " << numberOfNodes(root) << "\n";
     cout << "Sum of all nodes: " << sumOfNodes(root) << "\n";
     cout << "Maximum node: " << maxNode(root) << "\n";
-    cout << "Height of tree: " << height(root) << "\n\n";
+    cout << "Height of tree: " << sum(root) << "\n\n";
 
     destruct(root);
 }

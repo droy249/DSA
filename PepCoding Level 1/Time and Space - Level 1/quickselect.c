@@ -15,7 +15,7 @@ int partition(int arr[], const int low, const int high, const int pivot){
     return j - 1;
 }
 
-void quickselect(int arr[], int low, int high, const int k){
+int quickselect(int arr[], int low, int high, const int k){
     int pivot = arr[high];
     int pivotIndex = partition(arr, low, high, pivot);
 

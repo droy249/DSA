@@ -10,7 +10,7 @@ It is mainly used when the range of input array doesn't vary much and data is la
 i.e. mainly used when the the range of elements is less than number of elements 
 
 Reference Link: https://www.geeksforgeeks.org/counting-sort/#:~:text=Counting%20sort%20is%20efficient%20if%20the%20range%20of%20input%20data%20is%20not%20significantly%20greater%20than%20the%20number%20of%20objects%20to%20be%20sorted.%20Consider%20the%20situation%20where%20the%20input%20sequence%20is%20between%20range%201%20to%2010K%20and%20the%20data%20is%2010%2C%205%2C%2010K%2C%205K.
-Video link: https://www.youtube.com/watch?v=p-OyKUgIrx4&list=PL-Jc9J83PIiFc7hJ5eeCb579PS8p-en4f&index=9&ab_channel=Pepcoding
+Video link: https://youtu.be/p-OyKUgIrx4?list=PL-Jc9J83PIiFc7hJ5eeCb579PS8p-en4f
 */
 #include <stdio.h>
 #include <stdlib.h>
